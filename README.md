@@ -10,6 +10,6 @@ getgenv().Config = {
         ["BypassServer"] = true,
         ["Region"] = "Singapore"
     },
-    ["Server Discord"] = "https://discord.gg/mFzWdBUn45"
+    ["Server Discord"] = "https://discord.com/invite/HjGHrrzZ"
 }
 repeat wait() until game:IsLoaded()
