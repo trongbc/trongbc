@@ -1,6 +1,3 @@
---[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
 getgenv().Config = {
     ["StartFarmChest"] = true,
     ["Team"] = "Marines",
@@ -13,4 +10,3 @@ getgenv().Config = {
         ["BypassServer"] = true,
         ["Region"] = "Singapore"
 repeat wait() until game:IsLoaded()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/trongbc/Free-Script/main/Chest-Farm.lua"))()
