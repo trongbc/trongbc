@@ -1,0 +1,76 @@
+import pygame
+import sys
+
+# Khởi tạo pygame
+pygame.init()
+
+# Đặt kích thước màn hình
+WIDTH, HEIGHT = 800, 800
+WIN = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption('Cờ Tướng')
+
+# Định nghĩa các màu sắc
+WHITE = (255, 255, 255)
+BLACK = (0, 0, 0)
+RED = (255, 0, 0)
+BLUE = (0, 0, 255)
+
+# Định nghĩa kích thước ô vuông trên bàn cờ
+SQ_SIZE = WIDTH // 9
+BOARD_ROWS = 10
+BOARD_COLS = 9
+
+# Tạo các quân cờ
+class Piece:
+    def __init__(self, color, type, row, col):
+        self.color = color
+        self.type = type
+        self.row = row
+        self.col = col
+
+    def draw(self, win):
+        if self.color == 'red':
+            color = RED
+        else:
+            color = BLUE
+        pygame.draw.circle(win, color, (self.col * SQ_SIZE + SQ_SIZE // 2, self.row * SQ_SIZE + SQ_SIZE // 2), SQ_SIZE // 2 - 10)
+
+pieces = [
+    Piece('red', 'soldier', 3, 0),
+    Piece('blue', 'soldier', 6, 0),
+    # Thêm các quân cờ khác
+]
+
+# Vẽ bàn cờ
+def draw_board(win):
+    win.fill(WHITE)
+    for row in range(BOARD_ROWS):
+        for col in range(BOARD_COLS):
+            color = RED if (row == 0 or row == 9) and (col == 0 or col == 8) else BLACK
+            pygame.draw.rect(win, color, (col * SQ_SIZE, row * SQ_SIZE, SQ_SIZE, SQ_SIZE), 1)
+
+    for i in range(BOARD_ROWS):
+        pygame.draw.line(win, BLACK, (0, i * SQ_SIZE), (WIDTH, i * SQ_SIZE))
+    for j in range(BOARD_COLS):
+        pygame.draw.line(win, BLACK, (j * SQ_SIZE, 0), (j * SQ_SIZE, HEIGHT))
+
+# Chạy trò chơi
+def main():
+    run = True
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                run = False
+
+        draw_board(WIN)
+
+        for piece in pieces:
+            piece.draw(WIN)
+
+        pygame.display.flip()
+
+    pygame.quit()
+    sys.exit()
+
+if __name__ == "__main__":
+    main()
